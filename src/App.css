@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.btnPurp {
+  color: white !important;
+  background-color: #795df5 !important;
+  border: none !important;
+}
+
+.inpPurp {
+  color: white !important;
+  background-color: #795df5 !important;
+}
+
+.selectSearch {
+  width: 25% !important;
+}
