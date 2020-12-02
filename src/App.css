@@ -51,3 +51,26 @@
 .selectSearch {
   width: 25% !important;
 }
+
+.successMessage {
+  color: white !important;
+}
+
+.ant-message-notice-content {
+  background-color: black !important;
+  color: white !important;
+}
+
+.containerFirst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5px solid blue;
+  padding: 40px 40px 10px 40px;
+  background-color: white;
+}
+
+.containerSecond {
+  text-align: center;
+}

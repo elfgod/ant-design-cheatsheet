@@ -9,7 +9,12 @@ import { PlusCircleFilled, CloseCircleTwoTone, SearchOutlined } from '@ant-desig
 
 import { UserOutlined } from '@ant-design/icons';
 
+import { Row, Col, Divider } from 'antd';
+import { Form, Checkbox, Layout, Menu} from 'antd';
+
 const {Title, Text, Link, Paragraph} = Typography;
+const { Item } = Form;
+// const { Password } = Input;
 
 function App() {
 
@@ -60,22 +65,175 @@ const { Password } = Input; // Password input
 
   //  Menssage
   const messageSuccess = () => {
-    message.success("Message Success");
+    message.success({
+      content: "Message Success",
+      className: "successMessage"})
+  }
+  const messageError = () => {
+    message.error({
+      content: "Message Error",
+      duration: 10,
+      className: "successMessage"});
+  }
+  const messageInfo = () => {
+    message.info({
+      content: "Message Info",
+      className: "successMessage"});
+  }
+  const messageWarning = () => {
+    message.warning({
+      content: "Message Warning",
+      className: "successMessage"});
+  }
+  const messageLoading = () => {
+    message.loading({
+      content: "Message Loading",
+      className: "successMessage"})
+  }
+  // form Sucess and Failed component
+  const formSuccess = (data) => {
+    console.log("Form sended successfully", data);
+  }
+  const formFailed = (error) => {
+    console.log("Error: ", error);
   }
   return (
+    
     <div className="App">
-      <br />      
+    {/* CheatSheet */}
+      <h2>###Form</h2>
+      <Layout className="layout">
+      <div className="containerFirst">
+      <div className="containerSecond">
+        <Form name="formName" intialValues={{
+          remember: true         
+        }}
+        onFinish={formSuccess}
+        onFinishFailed={formFailed}>
+          <Item label="User"
+           name="username" 
+           rules={[{
+             required: true,
+             message: "Please type your username"
+           }
+           ]}>
+            <Input />
+            </Item>
+
+            <Item label="Password"
+            name="password"
+            rules={[{
+              required: true,
+              message: "Please type your password"
+            }
+            ]}>
+            <Password />
+            </Item>
+
+            <Item name="remember" valuePropName="checked">
+              <Checkbox>Remember user</Checkbox>
+            </Item>
+            <Item>
+              <button type="primary" htmlType="submit">Log In</button>
+            </Item>          
+        </Form>
+        </div>
+      </div>
+      </Layout>      
+      <h2>###Grid Pixels</h2>
+      <h3> Extra Small (xs) less than 576px<br /> Small (sm) more and equal 576px<br />Medium (md) more and equal 768px<br />Large (lg) more and equal 992px<br />Extra Large (xl) more and equal 1200px </h3>
+      <h2>###Grid</h2>
+      <Divider>2 columns (12 c/u)</Divider>  
+      <Row>
+      <Col xs={24} sm={12}><div  style={{ backgroundColor:'green', color: 'white'}}>xs24 - sm12</div></Col>
+      <Col xs={24} sm={12}><div  style={{ backgroundColor:'green', color: 'white'}}>xs24 - sm12</div></Col> 
+      </Row>
+      <Divider>3 columns (8 c/u)</Divider>  
+      <Row>
+      <Col xs={24} sm={12} md={8}><div  style={{ backgroundColor:'green', color: 'white'}}>xs24 - sm12</div></Col>
+      <Col xs={24} sm={12} md={8}><div  style={{ backgroundColor:'green', color: 'white'}}>xs24 - sm12</div></Col> 
+      <Col xs={24} sm={12} md={8}><div  style={{ backgroundColor:'green', color: 'white'}}>xs24 - sm12</div></Col> 
+      </Row>     
+      <Divider>2 columns (6 c/u)</Divider>  
+      <Row>
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col>
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col> 
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col> 
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col> 
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col> 
+      <Col xs={12} sm={8} md={6} lg={4}><div  style={{ backgroundColor:'green', color: 'white'}}>responsive column</div></Col> 
+      </Row>    
+           
+      <Divider> column 1 (24 c/u)</Divider>      
+      <Row>
+        <Col span={24} style={{ backgroundColor:'purple', color: 'white'}} >column</Col>
+      </Row>
+      <Divider> 2 columns (12 c/u)</Divider>
+      <Row>
+        <Col span={12} style={{ backgroundColor:'green', color: 'white'}} >column</Col>
+        <Col span={12} style={{ backgroundColor:'green', color: 'white'}} >column</Col>
+      </Row>
+      <Divider> 3 columns (8 c/u)</Divider>
+      <Row>
+        <Col span={8} style={{ backgroundColor:'black', color: 'white'}} >column</Col>
+        <Col span={8} style={{ backgroundColor:'black', color: 'white'}} >column</Col>
+        <Col span={8} style={{ backgroundColor:'black', color: 'white'}} >column</Col>
+      </Row>
+      <Divider> 4 columns (6 c/u)</Divider>
+      <Row>
+        <Col span={6} style={{ backgroundColor:'yellow', color: 'black'}} >column</Col>
+        <Col span={6} style={{ backgroundColor:'yellow', color: 'black'}} >column</Col>
+        <Col span={6} style={{ backgroundColor:'yellow', color: 'black'}} >column</Col>
+        <Col span={6} style={{ backgroundColor:'yellow', color: 'black'}} >column</Col>
+      </Row>
+      <br />   
+      <h2>###Grid Gutter</h2>
+      <Divider> column 1 (24 c/u)</Divider>
+      <Row>
+        <Col span={24} ><div style={{ backgroundColor:'purple', color: 'white'}}>column</div></Col>
+      </Row>
+      <Divider> 2 columns (12 c/u)</Divider>
+      <Row gutter={[8, 8]}>
+        <Col span={12} ><div  style={{ backgroundColor:'green', color: 'white'}}>column</div></Col>
+        <Col span={12} ><div  style={{ backgroundColor:'green', color: 'white'}}>column</div></Col>
+      </Row>
+      <Divider> 3 columns (8 c/u)</Divider>
+      <Row gutter={[16, 16]}>
+        <Col span={8} ><div style={{ backgroundColor:'black', color: 'white'}}>column</div></Col>
+        <Col span={8} ><div style={{ backgroundColor:'black', color: 'white'}}>column</div></Col>
+        <Col span={8} ><div style={{ backgroundColor:'black', color: 'white'}}>column</div></Col>
+      </Row>
+      <Divider> 4 columns (6 c/u)</Divider>
+      <Row gutter={[32, 32]}>
+        <Col span={6}  ><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>
+        <Col span={6}  ><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>
+        <Col span={6}  ><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>
+        <Col span={6}  ><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>
+      </Row>
+      <h2>###Grid Flex</h2>
+      <Divider> 3 columns (8 c/u)</Divider>
+      <Row gutter={[16, 16]}>
+        <Col flex={2} ><div style={{ backgroundColor:'black', color: 'white'}}>2lex</div></Col>
+        <Col flex={1} ><div style={{ backgroundColor:'black', color: 'white'}}>1flex</div></Col>
+        <Col flex={3} ><div style={{ backgroundColor:'black', color: 'white'}}>3flex</div></Col>
+      </Row>
+      <Divider> 2 columns (1 of 200px and the other the rest of the row on auto)</Divider>
+      <Row gutter={[8, 8]}>
+        <Col flex="200px"><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>        
+        <Col flex="auto"><div style={{ backgroundColor:'yellow', color: 'black'}}>column</div></Col>
+      </Row>
+      <br />    
       <h2>###Menssage</h2>
-      <Button>Mensaje Success</Button>
-      ("    ")
-      <Button>Mensaje Error</Button>
-      ("    ")
-      <Button>Mensaje Info</Button>
-      ("    ")
-      <Button>Mensaje Warning</Button>
-      ("    ")
-      <Button>Mensaje Loading</Button>
-      ("    ")
+      <Button onClick={messageSuccess}>Message Success</Button>
+      {"    "}
+      <Button onClick={messageError}>Message Error</Button>
+      {"    "}
+      <Button onClick={messageInfo}>Message Info</Button>
+      {"    "}     
+      <Button onClick={messageWarning}>Message Warning</Button>
+      {"    "}
+      <Button onClick={messageLoading}>Message Loading</Button>
+      {"    "}
       <br />
       <h2>###Select 02</h2>
       <Select placeholder="Choose a Country" size="small"
